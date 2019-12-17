@@ -1,0 +1,48 @@
+Follow the general xampp setup process
+
+Place the RAVE folder into the htdocs folder within the xampp folder
+so your file structure should look something like this.
+*/xampp/htdocs/RAVE/
+
+To setup up the database 
+	Go into the admin page for phpmyadmin - (127.0.0.1/phpmyadmin)
+	Create a new database: name it 'edenbay'
+		If you use a different name you'll have to change the name of the database in the dbconnection.php file in the php folder of the project
+		
+	Then run the script from the database script folder (import database)
+		This will setup a database with 9 tables
+		Run the script twice so you don't get any errors and all of the row are placed into the database
+		
+To utilize the user rights you will need to go to the add a user page in the site and create a new user with whatever rights you want to see
+	If you don't want to see the different pages each user can access then don't change anything. The website will continue as if you logged in as an admin class user
+		We have it this way because we hash the passwords the user puts into the database.
+		In order to use the hashes we have to add user's through the website, we didn't find a way to pre-add users and still have the hashes work.
+	
+	This is the path for the page in the website.
+		Admin Tasks/Add a User
+	
+	You will want to add an admin class user.
+	
+	We recommend doing this
+		User: ADMIN
+		Pass: ADMIN
+		User: MECHANIC
+		Pass: MECHANIC
+		User: GENERAL
+		Pass: GENERAL
+		
+		This will allow you to see all three classes of user and what they can access
+		
+	Once you have made the users go into the getuserrights.php in the php folder file and comment out 'echo admin' and uncomment 'echo $_SESSION["USER_RIGHTS"];'
+	
+	Once this is done the website will now query the database for the userrights based on your login.
+	To reset your login just click the login button in the navbar 
+	
+To load the website
+	make sure the phpmyadmin and apache services on running in xampp
+	then go to one of these urls
+		localhost/RAVE/login.php
+		127.0.0.1/RAVE/login.php
+	to login from a different computer: ip address(ipv4)/rave/login.php
+		must be on the same network in order to connect to website.
+		
